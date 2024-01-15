@@ -7,6 +7,7 @@ module.exports = app => {
   const { router, controller } = app;
 
   router.get('/api/user', controller.api.user.list);
+  router.get('/api/user/login', controller.api.user.list);
   router.post('/api/wx/login', controller.api.user.login);
   router.post('/api/user/create', controller.api.user.create);
   router.put('/api/user/update', controller.api.user.update);
