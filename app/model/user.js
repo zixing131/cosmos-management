@@ -7,50 +7,83 @@ module.exports = function(app, sequelize) {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      comment: "用户ID"
     },
-    openid: {
+    open_id: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      unique: "openid"
+      comment: "微信用户唯一标识",
+      unique: "unique_open_id"
+    },
+    username: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      comment: "用户名"
     },
     nickname: {
-      type: DataTypes.STRING(255),
-      allowNull: true
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      comment: "昵称"
     },
-    avatar_url: {
-      type: DataTypes.STRING(1000),
-      allowNull: true
+    password: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      comment: "密码"
+    },
+    email: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      comment: "邮箱"
+    },
+    phone: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      comment: "电话"
+    },
+    avatar: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      comment: "头像"
     },
     gender: {
       type: DataTypes.TINYINT,
-      allowNull: true
-    },
-    city: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    province: {
-      type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
+      comment: "性别"
     },
     country: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    language: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    phone_number: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING(50),
       allowNull: true,
-      unique: "phone_number"
+      comment: "国家"
+    },
+    province: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      comment: "省份"
+    },
+    city: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      comment: "城市"
+    },
+    create_time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      comment: "创建时间"
+    },
+    update_time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      comment: "修改时间"
     }
   }, {
     sequelize,
     tableName: 'user',
+    // 启用时间戳
     timestamps: true,
+    // 自定义字段名
+    createdAt: 'create_time',
+    updatedAt: 'update_time',
     fieldComment: true,
     indexes: [
       {
@@ -62,19 +95,11 @@ module.exports = function(app, sequelize) {
         ]
       },
       {
-        name: "openid",
+        name: "unique_open_id",
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "openid" },
-        ]
-      },
-      {
-        name: "phone_number",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "phone_number" },
+          { name: "open_id" },
         ]
       },
     ]

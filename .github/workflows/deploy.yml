@@ -1,0 +1,30 @@
+name: Deploy Egg.js app
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支，你也可以根据实际情况更改为其他分支名
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies and build
+      run: |
+        npm install
+
+    - name: Deploy to server
+      uses: appleboy/ssh-action@master
+      with:
+        host: 43.138.143.36
+        username: root
+        key: ${{ secrets.CENTOS }}
+        script: |
+          cd /root/art-buddy-server/art-buddy-server
+          git pull origin main
+          npm install
+          pm2 reload ecosystem.config.js

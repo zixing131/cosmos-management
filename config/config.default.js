@@ -21,11 +21,11 @@ module.exports = appInfo => {
   config.sequelize = {
     // single database
     dialect: 'mysql',// support: mysql, mariadb, postgres, mssql
-    database: 'art-buddy',
-    host: 'gz-cdb-ezdfpaq3.sql.tencentcdb.com',
-    port: '63645',
+    database: 'cosmos',
+    host: 'localhost',
+    port: '3306',
     username: 'root',
-    password: '@Benstyle1024',
+    password: '123456',
     timezone: '+08:00',
     hooks: {
       afterDefine(Model) {
@@ -36,6 +36,37 @@ module.exports = appInfo => {
         })(Model);
       },
     },
+  };
+
+  // https://blog.csdn.net/weixin_43704471/article/details/90763103
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
+
+  config.jwt = {
+    secret: 'cosmos',
+    whitelist: ['/api/account/login', '/api/user/login', '/api/register'],
+  }
+
+  config.middleware = ["wrapResponse"]
+
+  config.wechat = {
+    appid: 'wx1468d1149679d87e', // 微信小程序的 App ID
+    secret: '3aec5fa93721ea6d1a4c886d91b3fb6f', // 微信小程序的 App Secret
+  };
+
+  config.multipart = {
+    mode: 'file',
+  };
+
+  config.aliyunOSS = {
+    client: {
+      accessKeyId: 'LTAI5tAub7YFLbrYZg6MViZM',
+      accessKeySecret: 'Eh8L14ZRSlHIHqLAzUbB154oChcTCW',
+      bucket: 'cosmos-oss',
+    }
   };
 
   return {

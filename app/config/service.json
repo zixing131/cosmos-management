@@ -1,0 +1,125 @@
+[
+  {
+    "type": "CPF Film",
+    "product": [
+      {
+        "name": "亮光/哑光/磨砂系列",
+        "price": 12000
+      },
+      {
+        "name": "珍珠/白变系列",
+        "price": 18600
+      },
+      {
+        "name": "钢琴/高亮系列",
+        "price": 18600
+      },
+      {
+        "name": "电光金属/陶瓷系列",
+        "price": 18600
+      },
+      {
+        "name": "绸缎/马卡龙系列",
+        "price": 18600
+      },
+      {
+        "name": "金属/珠光系列",
+        "price": 18600
+      },
+      {
+        "name": "钻石白变/变色龙/max系列",
+        "price": 18600
+      },
+      {
+        "name": "珊瑚系列",
+        "price": 18600
+      },
+      {
+        "name": "超亚/原厂/chn系列",
+        "price": 18600
+      },
+      {
+        "name": "自修复系列",
+        "price": 23800
+      },
+      {
+        "name": "哑面电镀金属系列",
+        "price": 23800
+      },
+      {
+        "name": "荧光系列",
+        "price": 18600
+      },
+      {
+        "name": "钻石系列",
+        "price": 18600
+      },
+      {
+        "name": "星空系列",
+        "price": 18600
+      },
+      {
+        "name": "特调系列",
+        "price": 23800
+      },
+      {
+        "name": "彩绘定制系列",
+        "price": 23800
+      },
+      {
+        "name": "竞速系列",
+        "price": 18600
+      },
+      {
+        "name": "液态金属系列",
+        "price": 18600
+      },
+      {
+        "name": "梦幻/镭射/缎面系列",
+        "price": 18600
+      },
+      {
+        "name": "重黑灯膜",
+        "price": 4800
+      },
+      {
+        "name": "概念系列",
+        "price": 23800
+      },
+      {
+        "name": "铸造级系列",
+        "price": 23800
+      }
+    ]
+  },
+  {
+    "type": "CPF PPFilm",
+    "product": [
+      {
+        "name": "CPF-PPF A series",
+        "price": 18800
+      },
+      {
+        "name": "CPF-PPF X series",
+        "price": 23800
+      },
+      {
+        "name": "CPF-PPF X Pro series",
+        "price": 32800
+      },
+      {
+        "name": "CPF-PPF S Pro series",
+        "price": 52800
+      }
+    ]
+  },
+  {
+    "type": "CPF Color TPUFilm",
+    "product": [
+      {
+        "name": "TPU改色系列",
+        "price": 32800
+      }
+    ]
+  }
+]

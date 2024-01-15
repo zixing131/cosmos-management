@@ -7,12 +7,14 @@
     "declarations": true
   },
   "dependencies": {
+    "ali-oss": "^6.18.1",
     "async": "^3.2.4",
-    "axios": "^1.4.0",
+    "axios": "^1.6.2",
     "dayjs": "^1.11.9",
     "egg": "^3",
     "egg-async-ivalidator": "^1.0.2",
     "egg-isequelize": "^2.0.0-beta.3",
+    "egg-jwt": "^3.1.7",
     "egg-scripts": "^2",
     "egg-sequelize": "^6.0.0",
     "jsonwebtoken": "^9.0.1",
