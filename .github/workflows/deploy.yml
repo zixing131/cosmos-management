@@ -29,6 +29,7 @@ jobs:
           cd /root/cosmos-management/client
           npm install
           npm run build
+          cd /root/cosmos-management/lib/plugins/egg-generator
           cd /root/cosmos-management
           npm install
           npm stop

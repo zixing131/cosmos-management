@@ -21,7 +21,7 @@
   "homepage": "https://github.com/callmez/egg-generator#readme",
   "dependencies": {
     "async-validator": "^1.8.2",
-    "comment-parser": "^1.5.0",
+    "comment-parser": "^1.4.0",
     "fs-extra": "^6.0.1",
     "globby": "^8.0.1",
     "lodash": "^4.17.10",
