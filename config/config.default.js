@@ -2,6 +2,8 @@
 
 'use strict';
 
+const path = require('path');
+
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -67,6 +69,12 @@ module.exports = appInfo => {
       accessKeySecret: 'Eh8L14ZRSlHIHqLAzUbB154oChcTCW',
       bucket: 'cosmos-oss',
     }
+  };
+
+  config.static = {
+    // 假设您的前端构建产物位于 client/dist 目录
+    prefix: '/',
+    dir: path.join(appInfo.baseDir, 'client'),
   };
 
   return {

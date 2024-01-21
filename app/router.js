@@ -41,5 +41,5 @@ module.exports = app => {
 
   router.post('/api/upload', controller.api.upload.index)
   
-  router.get('/', controller.home.index);
+  router.get('*', controller.home.index);
 };
