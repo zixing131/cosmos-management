@@ -34,7 +34,7 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "start": "npm run build-client && egg-scripts start --daemon --title=egg-server-cosmos-management",
+    "start": "egg-scripts start --daemon --title=egg-server-cosmos-management",
     "stop": "egg-scripts stop --title=egg-server-cosmos-management",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
