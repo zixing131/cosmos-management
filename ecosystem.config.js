@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: 'egg-application', // 应用程序的名称
+    name: 'cosmos-management', // 应用程序的名称
     script: 'npm', // 启动脚本
     args: 'start', // 传递给脚本的参数
     env: {
