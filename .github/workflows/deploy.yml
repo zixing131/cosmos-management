@@ -26,5 +26,9 @@ jobs:
         script: |
           cd /root/cosmos-management
           git pull origin main
+          cd /client
+          npm install
+          npm run build
+          cd ../
           npm install
           pm2 reload ecosystem.config.js
