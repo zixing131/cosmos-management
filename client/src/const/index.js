@@ -26,6 +26,7 @@ export const WARRANTY_STATUS_OPTION = [
 ]
 
 export const INDEX_BANNER_LIST = 'INDEX_BANNER_LIST';
+export const INDEX_BRAND = 'INDEX_BRAND';
 export const INDEX_WARRANTY_ENTRANCE = 'INDEX_WARRANTY_ENTRANCE';
 export const INDEX_QUOTATION_ENTRANCE = 'INDEX_QUOTATION_ENTRANCE';
 export const WARRANTY_SEARCH_IMAGE = 'WARRANTY_SEARCH_IMAGE';
@@ -82,6 +83,14 @@ export const INFO_TYPE_KEYS = {
       type: 'image',
       width: 175,
       height: 98,
+    },
+    {
+      optionKey: INDEX_BRAND,
+      label: '品牌介绍',
+      maxCount: 1,
+      type: 'image',
+      width: 358,
+      height: 200,
     }
   ],
   [INFO_TYPE.QUERY]: [
