@@ -54,23 +54,26 @@ class Warranty extends Service {
    * @return {Promise<_data>}
    */
   async create(data = this.ctx.request.body) {
-    const _data = await this.ctx.validate({
-      // id: { type: 'string' },
-      // dealer: { type: 'string' },
-      // owner_name: { type: 'string' },
-      // phone_number: { type: 'string' },
-      // license_plate: { type: 'string' },
-      // car_brand: { type: 'string' },
-      // product_series: { type: 'string' },
-      // coil_number: { type: 'string' },
-      // construction_date: { type: 'string' },
-      // expiration_date: { type: 'string' },
-      // status: { type: 'string' },
-      // vehicle_photo: { type: 'string' },
-      // total_price: { type: 'string' },
+    // const _data = await this.ctx.validate({
+    //   id: { type: 'string' },
+    //   dealer: { type: 'string' },
+    //   owner_name: { type: 'string' },
+    //   phone_number: { type: 'string' },
+    //   license_plate: { type: 'string' },
+    //   car_brand: { type: 'string' },
+    //   product_series: { type: 'string' },
+    //   coil_number: { type: 'string' },
+    //   construction_date: { type: 'string' },
+    //   expiration_date: { type: 'string' },
+    //   status: { type: 'string' },
+    //   vehicle_photo: { type: 'string' },
+    //   total_price: { type: 'string' },
+    // }, data);
 
-    }, data);
-    return this.ctx.model.Warranty.create(_data);
+    return this.ctx.model.Warranty.create({
+      ...data,
+      status: 1,
+    });
   }
 
   /**
@@ -107,10 +110,13 @@ class Warranty extends Service {
    */
   async updateStatus(id = this.ctx.params.id, data = this.ctx.request.body) {
     const model = await this.findById(id);
-    const _data = await this.ctx.validate({
-      status: { type: 'string' },
-    }, data);
-    return model.update(_data);
+    // const _data = await this.ctx.validate({
+    //   status: { type: 'string' },
+    // }, data);
+    return model.update({
+      ...model.dataValues,
+      status: data.status
+    });
   }
 
   /**

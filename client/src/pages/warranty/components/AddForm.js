@@ -10,38 +10,26 @@ import {
   ProFormUploadDragger,
   ProFormDatePicker,
 } from '@ant-design/pro-components';
-import { Row } from 'antd';
+import { Row, Form } from 'antd';
 
 const AddForm = (props) => {
+  const [form] = Form.useForm();
+
   return (
     <ModalForm
       title='新建质保单'
       width="600px"
+      form={form}
+      autoFocusFirstInput
       visible={props?.addModalVisible}
       onVisibleChange={props?.changeVisible}
       onFinish={async (value) => {
-        const success = await handleAdd(value);
-        if (success) {
-          props?.handleModalVisible(false);
-          if (props?.actionRef.current) {
-            props?.actionRef.current.reload();
-          }
-        }
+        await props.onSubmit({
+          ...value,
+          vehicle_photo: value?.vehicle_photo[0]?.response?.data?.url || ''
+        })
       }}
     >
-      <ProFormText
-        rules={[
-          {
-            required: true,
-            message: '唯一标识，主键为必填项',
-          },
-        ]}
-        width="xl"
-        name="id"
-        label="唯一标识，主键"
-        hidden
-      />
-
       <ProFormText
         rules={[
           {
@@ -179,7 +167,7 @@ const AddForm = (props) => {
         width="xl"
         name="vehicle_photo"
         label="车辆照片"
-        action="upload.do"
+        action={'/api/upload'}
         accept=".png, .jpg, .jpeg, .gif, .bmp,.webp"
         fieldProps={{
           name: 'file',
@@ -197,6 +185,13 @@ const AddForm = (props) => {
         width="xl"
         name="total_price"
         label="总报价"
+      />
+
+      <ProFormText
+        width="xl"
+        name="id"
+        label="唯一标识，主键"
+        hidden
       />
 
     </ModalForm>

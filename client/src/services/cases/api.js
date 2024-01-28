@@ -8,14 +8,14 @@ export async function queryCases(params) {
 export async function addCases(params) {
   return request('/api/cases', {
     method: 'POST',
-    body: params,
+    data: params,
   });
 }
 
 export async function updateCases(params) {
   return request(`/api/cases/${params.id}`, {
     method: 'PUT',
-    body: params,
+    data: params,
   });
 }
 

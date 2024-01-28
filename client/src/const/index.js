@@ -40,7 +40,7 @@ export const INFO_TYPE = {
 export const INFO_TYPE_TEXT = {
   [INFO_TYPE.INDEX]: "首页",
   [INFO_TYPE.QUERY]: "搜索页面",
-  [INFO_TYPE.WARRANTY]: "报价单",
+  // [INFO_TYPE.WARRANTY]: "报价单",
 }
 
 export const INFO_TYPE_TAB_OPTION = [

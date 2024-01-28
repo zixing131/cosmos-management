@@ -6,16 +6,25 @@ export async function queryWarranty(params) {
 }
 
 export async function addWarranty(params) {
-  return request('/api/warranty', {
+  return request('/api/warranty/create', {
     method: 'POST',
-    body: params,
+    data: params,
   });
 }
 
 export async function updateWarranty(params) {
   return request(`/api/warranty/${params.id}`, {
     method: 'PUT',
-    body: params,
+    data: params,
+  });
+}
+
+export async function updateWarrantyStatus({ id, status }) {
+  return request(`/api/warranty/status/${id}`, {
+    method: 'PUT',
+    data: {
+      status
+    },
   });
 }
 

@@ -25,19 +25,20 @@ module.exports = function(app, sequelize) {
       type: DataTypes.STRING(255),
       allowNull: false
     },
-    create_time: {
+    create_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
-    update_time: {
+    update_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     }
   }, {
     sequelize,
     tableName: 'cases',
     timestamps: false,
     fieldComment: true,
+    deletedAt: false,
     indexes: [
       {
         name: "PRIMARY",

@@ -42,6 +42,7 @@ class Cases extends Service {
     const result = await this.ctx.model.Cases.paginate({
       where: _data.data,
       ...page(data),
+      include: [{ model: this.ctx.model.CaseImages, as: 'case_images' }]
     });
 
     const casesList = result.rows;
@@ -56,30 +57,28 @@ class Cases extends Service {
    * @return {Promise<_data>}
    */
   async create(data = this.ctx.request.body) {
-    const _data = await this.ctx.validate({
-      // id: { type: 'string' },
-      // brand: { type: 'string' },
-      // series: { type: 'string' },
-      // product_name: { type: 'string' },
-      // create_time: { type: 'string' },
-      // update_time: { type: 'string' },
+    // const _data = await this.ctx.validate({
+    //   // id: { type: 'string' },
+    //   // brand: { type: 'string' },
+    //   // series: { type: 'string' },
+    //   // product_name: { type: 'string' },
+    //   // create_time: { type: 'string' },
+    //   // update_time: { type: 'string' },
 
-    }, data);
+    // }, data);
+    const { images, ..._data } = data
     const cases = await this.ctx.model.Cases.create(_data);
-
-    // 从data中取出图片
-    const { images } = data;
     // 构建图片列表
     const imagesList = images.map((item) => ({
-      cases_id: cases.id,
-      url: item.url,
+      case_id: cases.id,
+      image_url: item,
       sort_order: item.sort_order,
     }));
 
     // 批量插入图片
-    await this.ctx.model.CasesImages.bulkCreate(imagesList);
+    await this.ctx.model.CaseImages.bulkCreate(imagesList);
 
-    return { ...cases, images: imagesList };
+    return { ...(cases?.dataValues || {}), images: imagesList };
   }
 
   /**

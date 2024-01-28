@@ -4,7 +4,7 @@ import {
   addWarranty,
   removeWarranty,
   queryWarranty,
-  updateWarranty,
+  updateWarrantyStatus,
 } from '@/services/warranty/api';
 import { PlusOutlined } from '@ant-design/icons';
 import {
@@ -40,50 +40,45 @@ const handleAdd = async (fields) => {
   }
 };
 
-/**
- * 更新质保单
- *
- * @param fields
- */
-const handleUpdate = async (fields) => {
-  const hide = message.loading('Configuring');
-  try {
-    await updateWarranty({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
-    });
-    hide();
-    message.success('Configuration is successful');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('Configuration failed, please try again!');
-    return false;
-  }
-};
+// /**
+//  * 删除质保单
+//  *
+//  * @param selectedRows
+//  */
+// const handleRemove = async (selectedRows) => {
+//   const hide = message.loading('正在删除');
+//   if (!selectedRows) return true;
+//   try {
+//     await removeWarranty({
+//       key: selectedRows.map((row) => row.key),
+//     });
+//     hide();
+//     message.success('Deleted successfully and will refresh soon');
+//     return true;
+//   } catch (error) {
+//     hide();
+//     message.error('Delete failed, please try again');
+//     return false;
+//   }
+// };
 
-/**
- * 删除质保单
- *
- * @param selectedRows
- */
-const handleRemove = async (selectedRows) => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
+const changeStatus = async (info) => {
+  const hide = message.loading('正在设置');
   try {
-    await removeWarranty({
-      key: selectedRows.map((row) => row.key),
+    await updateWarrantyStatus({
+      id: info?.id,
+      status: WARRANTY_STATUS.APPROVED
     });
     hide();
-    message.success('Deleted successfully and will refresh soon');
+    message.success('操作成功');
     return true;
   } catch (error) {
     hide();
-    message.error('Delete failed, please try again');
+    message.error('操作失败，请稍后再试');
     return false;
   }
-};
+}
+
 const WarrantyList = () => {
   /**
    * 新建窗口的弹窗
@@ -155,17 +150,18 @@ const WarrantyList = () => {
     {
       title: '施工日期',
       dataIndex: 'construction_date',
-      valueType: 'textarea',
+      valueType: 'date',
     },
 
     {
       title: '质保截止日期',
       dataIndex: 'expiration_date',
-      valueType: 'textarea',
+      valueType: 'date',
     },
 
     {
       title: '当前状态',
+      valueType: 'select',
       dataIndex: 'status',
       valueEnum: {
         [WARRANTY_STATUS.PROCESSING]: {
@@ -184,6 +180,12 @@ const WarrantyList = () => {
     },
 
     {
+      title: '总报价',
+      dataIndex: 'total_price',
+      valueType: 'textarea',
+    },
+
+    {
       title: '车辆照片',
       dataIndex: 'vehicle_photo',
       valueType: 'textarea',
@@ -191,9 +193,9 @@ const WarrantyList = () => {
     },
 
     {
-      title: '总报价',
-      dataIndex: 'total_price',
-      valueType: 'textarea',
+      title: '操作',
+      dataIndex: 'action',
+      render: (text, _) => _?.status === '1' && <a onClick={() => changeStatus(_)}>通过</a>,
     },
   ];
   return (
@@ -201,7 +203,7 @@ const WarrantyList = () => {
       <ProTable
         headerTitle={'质保单管理'}
         actionRef={actionRef}
-        rowKey="key"
+        rowKey="id"
         search={{
           labelWidth: 120,
         }}
@@ -237,7 +239,7 @@ const WarrantyList = () => {
         changeVisible={handleModalVisible}
         values={currentRow || {}}
       />
-      <UpdateForm
+      {/* <UpdateForm
         onSubmit={async (value) => {
           const success = await handleUpdate(value);
           if (success) {
@@ -257,7 +259,7 @@ const WarrantyList = () => {
         updateModalVisible={updateModalVisible}
         changeVisible={handleUpdateModalVisible}
         values={currentRow || {}}
-      />
+      /> */}
 
       <Drawer
         width={600}

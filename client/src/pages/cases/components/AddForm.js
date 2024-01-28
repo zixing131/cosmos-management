@@ -1,5 +1,6 @@
 
 import ImageUploadDragger from '@/components/ImageUploadDragger';
+import { addCases } from '@/services/cases/api';
 import {
   ProFormDateTimePicker,
   ProFormRadio,
@@ -22,16 +23,14 @@ const AddForm = (props) => {
         destroyOnClose: true,
       }}
       onFinish={async (value) => {
-        const success = await handleAdd(value);
-        if (success) {
-          props?.handleModalVisible(false);
-          if (props?.actionRef.current) {
-            props?.actionRef.current.reload();
-          }
-        }
+        
+        await props?.onSubmit({
+          ...value,
+          image: value?.image[0]?.response?.data?.url || '',
+          images: value?.images?.map((item) => item?.response?.data?.url) || [],
+        })
       }}
     >
-
       <ProFormText
         rules={[
           {
