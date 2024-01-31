@@ -5,17 +5,21 @@ export async function queryInfo(params) {
   return request(`/api/info?${stringify(params)}`);
 }
 
+export async function findByKeys(params) {
+  return request(`/api/info/keys?${stringify(params)}`);
+}
+
 export async function addInfo(params) {
-  return request('/api/info', {
+  return request('/api/info/create', {
     method: 'POST',
-    body: params,
+    data: params,
   });
 }
 
 export async function updateInfo(params) {
   return request(`/api/info/${params.id}`, {
     method: 'PUT',
-    body: params,
+    data: params,
   });
 }
 

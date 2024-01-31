@@ -27,17 +27,17 @@ module.exports = function(app, sequelize) {
     },
     pinned_time: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       comment: "顶置时间"
     },
     create_time: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       comment: "创建时间"
     },
     update_time: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       comment: "更新时间"
     }
   }, {

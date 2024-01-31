@@ -55,7 +55,7 @@ const AddForm = (props) => {
         label="系列"
       />
 
-      <ImageUploadDragger name="image" label="列表首图" width={175} height={98} max={1} />
+      <ImageUploadDragger name="image" label="列表首图" width={120} height={100} max={1} />
 
       <ProFormText
         rules={[
@@ -69,7 +69,7 @@ const AddForm = (props) => {
         label="产品名称"
       />
 
-      <ImageUploadDragger name="images" label="案例照片" width={175} height={98} max={20} />
+      <ImageUploadDragger name="images" label="案例照片" max={20} />
 
     </ModalForm>
   );

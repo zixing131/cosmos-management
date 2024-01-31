@@ -20,6 +20,7 @@ module.exports = app => {
   router.post('/api/account/login', controller.api.account.login);
 
   router.get('/api/info', controller.api.info.list);
+  router.get('/api/info/keys', controller.api.info.findByKeys);
   router.post('/api/info/create', controller.api.info.create);
   router.put('/api/info/update', controller.api.info.update);
   router.delete('/api/info/destroy', controller.api.info.destroy);

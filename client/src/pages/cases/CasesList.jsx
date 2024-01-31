@@ -93,49 +93,52 @@ const CasesList = () => {
   const [selectedRowsState, setSelectedRows] = useState([]);
 
   const columns = [
-      
-      {
-        title:  'ID',
-        dataIndex: 'id',
-        valueType: 'textarea',
-      }, 
-      
-      {
-        title:  '品牌',
-        dataIndex: 'brand',
-        valueType: 'textarea',
-      }, 
-      
-      {
-        title:  '系列',
-        dataIndex: 'series',
-        valueType: 'textarea',
-      },
-      
-      {
-        title:  '列表首图',
-        dataIndex: 'image',
-        render: (_, record) => <Image src={record.image || 'https://www.changan.com.cn/cars_m/UNI-V/images/meitu/1.jpg'} style={{ width: 150 }} />,
-      },  
-      
-      {
-        title:  '产品名称',
-        dataIndex: 'product_name',
-        valueType: 'textarea',
-      }, 
-      
-      {
-        title:  '创建时间',
-        dataIndex: 'create_time',
-        valueType: 'textarea',
-      }, 
-      
-      {
-        title:  '更新时间',
-        dataIndex: 'update_time',
-        valueType: 'textarea',
-      }, 
-      
+    {
+      title: 'ID',
+      dataIndex: 'id',
+      valueType: 'textarea',
+    },
+
+    {
+      title: '品牌',
+      dataIndex: 'brand',
+      valueType: 'textarea',
+    },
+
+    {
+      title: '系列',
+      dataIndex: 'series',
+      valueType: 'textarea',
+    },
+
+    {
+      title: '列表首图',
+      dataIndex: 'image',
+      render: (_, record) => (
+        <Image
+          src={record.image || 'https://www.changan.com.cn/cars_m/UNI-V/images/meitu/1.jpg'}
+          style={{ width: 150 }}
+        />
+      ),
+    },
+
+    {
+      title: '产品名称',
+      dataIndex: 'product_name',
+      valueType: 'textarea',
+    },
+
+    {
+      title: '创建时间',
+      dataIndex: 'create_time',
+      valueType: 'textarea',
+    },
+
+    {
+      title: '更新时间',
+      dataIndex: 'update_time',
+      valueType: 'textarea',
+    },
   ];
   return (
     <PageContainer>

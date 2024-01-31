@@ -18,7 +18,7 @@ class Info extends Service {
   }
 
   // 传入key的list，返回对应数据的list
-  async findByKeys(keys) {
+  async findByKeys(keys = this.ctx.params.keys) {
     const model = await this.ctx.model.Info.findAll({ where: { info_key: keys } });
     if (!model) this.ctx.throw(400, 'Info not found.');
     return model;
@@ -65,7 +65,7 @@ class Info extends Service {
       // update_time: { type: 'string' },
       
     }, data);
-    return this.ctx.model.Info.create(_data);
+    return this.ctx.model.Info.create(data);
   }
 
   /**
