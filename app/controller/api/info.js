@@ -14,6 +14,13 @@ class InfoController extends Controller {
   }
 
   /**
+   * info paginate query
+   */
+  async findByKeys() {
+    this.ctx.body = await this.ctx.service.info.findByKeys();
+  }
+
+  /**
    * create info
    */
   async create() {
