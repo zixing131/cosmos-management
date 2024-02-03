@@ -139,6 +139,22 @@ const CasesList = () => {
       dataIndex: 'update_time',
       valueType: 'textarea',
     },
+    {
+      title: '操作',
+      dataIndex: 'edit',
+      render: (_, record) => (
+        <>
+          <a
+            onClick={() => {
+              handleUpdateModalVisible(true);
+              setCurrentRow(record);
+            }}
+          >
+            编辑
+          </a>
+        </>
+      ),
+    },
   ];
   return (
     <PageContainer>
@@ -174,7 +190,7 @@ const CasesList = () => {
           }
         }}
         onCancel={() => {
-          handleUpdateModalVisible(false);
+          handleModalVisible(false);
         }}
         addModalVisible={addModalVisible}
         changeVisible={handleModalVisible}

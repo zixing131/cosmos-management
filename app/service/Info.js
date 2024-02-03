@@ -18,8 +18,8 @@ class Info extends Service {
   }
 
   // 传入key的list，返回对应数据的list
-  async findByKeys(keys = this.ctx.params.keys) {
-    const model = await this.ctx.model.Info.findAll({ where: { info_key: keys } });
+  async findByKeys(keys = this.ctx.query.keys) {
+    const model = await this.ctx.model.Info.findAll({ where: { info_key: { [this.ctx.model.Sequelize.Op.in]: keys?.split(',') || [] } } });
     if (!model) this.ctx.throw(400, 'Info not found.');
     return model;
   }

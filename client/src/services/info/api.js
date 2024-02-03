@@ -6,7 +6,7 @@ export async function queryInfo(params) {
 }
 
 export async function findByKeys(params) {
-  return request(`/api/info/keys?${stringify(params)}`);
+  return request(`/api/info/keys?keys=${params?.keys || []}`);
 }
 
 export async function addInfo(params) {

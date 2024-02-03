@@ -23,7 +23,6 @@ const AddForm = (props) => {
         destroyOnClose: true,
       }}
       onFinish={async (value) => {
-        
         await props?.onSubmit({
           ...value,
           image: value?.image[0]?.response?.data?.url || '',

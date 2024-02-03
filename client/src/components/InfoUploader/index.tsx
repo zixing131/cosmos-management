@@ -39,17 +39,17 @@ const InfoUploader: React.FC<InfoUploaderProps> = ({
           message.error('图片格式不正确');
           return Upload.LIST_IGNORE;
         };
-        if (width && height) {
-          image.onload = () => {
-            const componentRatio = image.width / image.height;
-            const specifiedRatio = width / height;
-            if (componentRatio.toFixed(2) !== specifiedRatio.toFixed(2)) {
-              message.error(`图片宽高比例为${width}:${height}`);
-              return resolve(Upload.LIST_IGNORE);
-            }
-            return resolve(true);
-          };
-        }
+        // if (width && height) {
+        //   image.onload = () => {
+        //     const componentRatio = image.width / image.height;
+        //     const specifiedRatio = width / height;
+        //     if (componentRatio.toFixed(2) !== specifiedRatio.toFixed(2)) {
+        //       message.error(`图片宽高比例为${width}:${height}`);
+        //       return resolve(Upload.LIST_IGNORE);
+        //     }
+        //     return resolve(true);
+        //   };
+        // }
       })
     },
     onChange(info) {
