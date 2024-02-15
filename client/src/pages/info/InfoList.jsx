@@ -17,7 +17,7 @@ import UpdateForm from './components/UpdateForm';
 import { INFO_TYPE_TAB_OPTION, INFO_TYPE, INFO_TYPE_KEYS } from '@/const';
 import InfoUploader from '@/components/InfoUploader';
 
-const getInfoImage = (list = [], key) => list?.filter((item) => item.type === key);
+const getInfoImage = (list = [], key) => list?.filter((item) => item.info_key === key);
 
 const InfoList = () => {
   const [infoType, setInfoType] = useState(INFO_TYPE.INDEX);
@@ -26,8 +26,9 @@ const InfoList = () => {
   const [list, setList] = useState([]);
 
   const getList = async () => {
+    const keys = INFO_TYPE_KEYS[infoType].map((item) => item.optionKey);
     const res = await findByKeys({
-      keys: [INFO_TYPE.INDEX, INFO_TYPE.QUERY]
+      keys
     });
     if (res?.data) {
       setList(res.data);

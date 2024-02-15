@@ -98,7 +98,7 @@ class Info extends Service {
    * @param {Object} data
    * @return {Promise<*>}
    */
-  async destroy(id = this.ctx.params.id) {
+  async destroy(id = this.ctx.query.id) {
     const model = await this.findById(id);
     return model.destroy();
   }

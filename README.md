@@ -31,3 +31,16 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+
+
+## TODO
+
+### 微信端
+
+- 登录token：包含type
+- 页面展示
+
+### 管理端
+
+- 增删改查
+- 图片排序

@@ -1,5 +1,6 @@
+import { info2file } from "@/utils";
 import { InboxOutlined } from "@ant-design/icons";
-import { UploadProps, Upload, Card, Image as ImagePreview, Row, Col, message } from "antd";
+import { UploadProps, Upload, Card, Image as ImagePreview, Row, Col, message, Button, Popconfirm } from "antd";
 
 const { Dragger } = Upload;
 
@@ -28,28 +29,35 @@ const InfoUploader: React.FC<InfoUploaderProps> = ({
 }) => {
   const props: UploadProps = {
     name: 'file',
-    multiple: true,
+    maxCount,
     action: '/api/upload',
     accept: ".png, .jpg, .jpeg, .gif, .bmp,.webp",
-    beforeUpload: (file: any) => {
+    defaultFileList: info2file(files),
+    showUploadList: false,
+    beforeUpload: (file: any, fileList: any) => {
       return new Promise((resolve) => {
+        console.log('fileList', fileList)
+        if (files.length + 1 > maxCount) {
+          message.error(`最多上传${maxCount}张图片`);
+          return resolve(Upload.LIST_IGNORE);
+        }
         const image = new Image();
         image.src = window.URL.createObjectURL(file);
         image.onerror = () => {
           message.error('图片格式不正确');
           return Upload.LIST_IGNORE;
         };
-        // if (width && height) {
-        //   image.onload = () => {
-        //     const componentRatio = image.width / image.height;
-        //     const specifiedRatio = width / height;
-        //     if (componentRatio.toFixed(2) !== specifiedRatio.toFixed(2)) {
-        //       message.error(`图片宽高比例为${width}:${height}`);
-        //       return resolve(Upload.LIST_IGNORE);
-        //     }
-        //     return resolve(true);
-        //   };
-        // }
+        image.onload = () => {
+          if (width && height) {
+            const componentRatio = image.width / image.height;
+            const specifiedRatio = width / height;
+            if (componentRatio.toFixed(2) !== specifiedRatio.toFixed(2)) {
+              message.error(`图片宽高比例为${width}:${height}`);
+              return resolve(Upload.LIST_IGNORE);
+            }
+          }
+          return resolve(true);
+        };
       })
     },
     onChange(info) {
@@ -79,12 +87,39 @@ const InfoUploader: React.FC<InfoUploaderProps> = ({
         {label}<span>({files?.length || 0} / {maxCount})</span>
       </h3>
     }>
-      <Row style={{ marginBottom: '20px' }} gutter={16}>
+      <Row gutter={16}>
         {
-          Array.isArray(files) && files.map((file) => {
+          Array.isArray(files) && files.map((file, index) => {
             return (
-              <Col className="gutter-row" span={6} key={file}>
+              <Col style={{ marginBottom: '10px' }} className="gutter-row" span={6} key={file.id}>
                 <ImagePreview src={file?.content} />
+                <div className="flex" style={{ marginBottom: '5px' }}>
+                  <Popconfirm
+                    title="确认删除吗？"
+                    okText="Yes"
+                    cancelText="No"
+                    onConfirm={() => onRemove(file.id)}
+                  >
+                    <Button
+                      style={{ marginTop: '5px', marginRight: '5px' }}
+                      size="small"
+                      type="primary"
+                      danger
+                    >
+                      删除
+                    </Button>
+                  </Popconfirm>
+                  {
+                    index > 0 &&
+                    <Button
+                      style={{ marginTop: '5px' }}
+                      className="flex-1"
+                      size="small"
+                    >
+                      置顶
+                    </Button>
+                  }
+                </div>
               </Col>
             )
           })
