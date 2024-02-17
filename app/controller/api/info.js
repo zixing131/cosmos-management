@@ -35,6 +35,13 @@ class InfoController extends Controller {
   }
 
   /**
+   * pinned info by id
+   */
+  async pinned() {
+    this.ctx.body = await this.ctx.service.info.pinned();
+  }
+
+  /**
    * destroy info by id
    */
   async destroy() {

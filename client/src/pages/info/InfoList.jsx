@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Button, Drawer, Input, message } from 'antd';
-import { addInfo, removeInfo, findByKeys, updateInfo } from '@/services/info/api';
+import { addInfo, removeInfo, findByKeys, updateInfo, pinnedInfo } from '@/services/info/api';
 import { PlusOutlined } from '@ant-design/icons';
 import {
   FooterToolbar,
@@ -50,6 +50,17 @@ const InfoList = () => {
     return false;
   };
 
+  // 置顶功能
+  const handlePinnedInfo = async (id) => {
+    const res = await pinnedInfo(id);
+    if (res?.data) {
+      message.success('置顶成功');
+      getList();
+      return true;
+    }
+    return false;
+  };
+
   // 添加删除功能
   const handleRemoveInfo = async (id) => {
     const res = await removeInfo(id);
@@ -82,6 +93,7 @@ const InfoList = () => {
             files={getInfoImage(list, item.optionKey)}
             onRemove={handleRemoveInfo}
             onAdd={handleAddInfo}
+            onPinned={handlePinnedInfo}
           />
         ))}
     </PageContainer>

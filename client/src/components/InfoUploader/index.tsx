@@ -1,6 +1,7 @@
 import { info2file } from "@/utils";
 import { InboxOutlined } from "@ant-design/icons";
 import { UploadProps, Upload, Card, Image as ImagePreview, Row, Col, message, Button, Popconfirm } from "antd";
+import { useRef } from "react";
 
 const { Dragger } = Upload;
 
@@ -25,8 +26,10 @@ const InfoUploader: React.FC<InfoUploaderProps> = ({
   width,
   height,
   onAdd,
-  onRemove
+  onRemove,
+  onPinned,
 }) => {
+  const draggerRef = useRef(null);
   const props: UploadProps = {
     name: 'file',
     maxCount,
@@ -98,7 +101,10 @@ const InfoUploader: React.FC<InfoUploaderProps> = ({
                     title="确认删除吗？"
                     okText="Yes"
                     cancelText="No"
-                    onConfirm={() => onRemove(file.id)}
+                    onConfirm={async () => {
+                      await onRemove(file.id)
+                      console.log('draggerRef', draggerRef)
+                    }}
                   >
                     <Button
                       style={{ marginTop: '5px', marginRight: '5px' }}
@@ -113,8 +119,11 @@ const InfoUploader: React.FC<InfoUploaderProps> = ({
                     index > 0 &&
                     <Button
                       style={{ marginTop: '5px' }}
-                      className="flex-1"
                       size="small"
+                      onClick={async () => {
+                        debugger
+                        await onPinned(file.id, index)
+                      }}
                     >
                       置顶
                     </Button>
@@ -126,7 +135,7 @@ const InfoUploader: React.FC<InfoUploaderProps> = ({
         }
       </Row>
 
-      <Dragger {...props}>
+      <Dragger {...props} ref={draggerRef}>
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
         </p>

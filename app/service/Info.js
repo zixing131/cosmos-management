@@ -19,7 +19,14 @@ class Info extends Service {
 
   // 传入key的list，返回对应数据的list
   async findByKeys(keys = this.ctx.query.keys) {
-    const model = await this.ctx.model.Info.findAll({ where: { info_key: { [this.ctx.model.Sequelize.Op.in]: keys?.split(',') || [] } } });
+    const model = await this.ctx.model.Info.findAll({
+      where: {
+        info_key: {
+          [this.ctx.model.Sequelize.Op.in]: keys?.split(',') || []
+        }
+      },
+      order: [['pinned_time', 'DESC'], ['id', 'ASC']]
+    });
     if (!model) this.ctx.throw(400, 'Info not found.');
     return model;
   }
@@ -39,7 +46,7 @@ class Info extends Service {
       // sort_order: { type: 'string' },
       // create_time: { type: 'string' },
       // update_time: { type: 'string' },
-      
+
     }, data);
 
     return this.ctx.model.Info.paginate({
@@ -63,7 +70,7 @@ class Info extends Service {
       // sort_order: { type: 'string' },
       // create_time: { type: 'string' },
       // update_time: { type: 'string' },
-      
+
     }, data);
     return this.ctx.model.Info.create(data);
   }
@@ -77,18 +84,29 @@ class Info extends Service {
    */
   async update(id = this.ctx.params.id, data = this.ctx.request.body) {
     const model = await this.findById(id);
-    const _data = await this.ctx.validate({
+    return model.update(_data, {
+      where: {
+        id: id
+      }
+    });
+  }
 
-      // id: { type: 'string' },
-      // key: { type: 'string' },
-      // type: { type: 'string' },
-      // content: { type: 'string' },
-      // sort_order: { type: 'string' },
-      // create_time: { type: 'string' },
-      // update_time: { type: 'string' },
-      
-    }, data);
-    return model.update(_data);
+  /**
+   * 更新pinned_time
+   */
+  async pinned(id = this.ctx.query.id) {
+    const model = await this.findById(id);
+    // const _data = await this.ctx.validate({
+    //   pinned_time: { type: 'string' },
+    // }, data);
+    if (!model) this.ctx.throw(400, 'Cases not found.');
+    return model.update({
+      pinned_time: new Date(),
+    }, {
+      where: {
+        id: id
+      }
+    });
   }
 
   /**

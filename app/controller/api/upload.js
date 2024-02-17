@@ -18,7 +18,7 @@ class UploadController extends Controller {
     try {
       // 假设有一个 service 用于处理文件上传
       // 这里调用该 service，并传入文件信息
-      const url = await ctx.service.oss.put(file.filepath, encodeURIComponent(`${file.filename.split('.')[0]}_${Math.random().toString(36).slice(2)}.${file.filename.split('.')[1]}`)); // 上传文件
+      const url = await ctx.service.oss.put(file.filepath, encodeURIComponent(`${Math.random().toString(36).slice(2)}.${file.filename.split('.')[1]}`)); // 上传文件
 
       ctx.body = {
         url, // 返回文件 URL

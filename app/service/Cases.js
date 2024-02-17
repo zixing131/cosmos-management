@@ -15,8 +15,8 @@ class Cases extends Service {
     const model = await this.ctx.model.Cases.findOne({
       where: {
         id,
-        include: [{ model: this.ctx.model.CaseImages, as: 'case_images' }],
-      }
+      },
+      include: [{ model: this.ctx.model.CaseImages, as: 'case_images' }]
     });
     if (!model) this.ctx.throw(400, 'Cases not found.');
     return model;
@@ -100,11 +100,18 @@ class Cases extends Service {
     //   // update_time: { type: 'string' },
 
     // }, data);
+
+    if (!model) this.ctx.throw(400, 'Cases not found.');
+
     const { images, ..._data } = data
-    const cases = await this.ctx.model.Cases.create(_data);
+    const cases = await this.ctx.model.Cases.update(_data, {
+      where: {
+        id: id
+      }
+    });
     // 构建图片列表
     const imagesList = images.map((item) => ({
-      case_id: cases.id,
+      case_id: data.id,
       image_url: item,
       sort_order: item.sort_order,
     }));
@@ -112,7 +119,7 @@ class Cases extends Service {
     // 删除原有图片
     await this.ctx.model.CaseImages.destroy({
       where: {
-        case_id: cases.id,
+        case_id: data.id,
       }
     });
 

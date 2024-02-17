@@ -23,6 +23,12 @@ export async function updateInfo(params) {
   });
 }
 
+export async function pinnedInfo(id) {
+  return request(`/api/info/pinned?id=${id}`, {
+    method: 'PUT',
+  });
+}
+
 export async function removeInfo(id) {
   return request(`/api/info/destroy?id=${id}`, {
     method: 'DELETE',

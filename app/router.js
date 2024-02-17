@@ -24,6 +24,7 @@ module.exports = app => {
   router.post('/api/info/create', controller.api.info.create);
   router.put('/api/info/update', controller.api.info.update);
   router.delete('/api/info/destroy', controller.api.info.destroy);
+  router.put('/api/info/pinned', controller.api.info.pinned);
 
   router.get('/api/warranty', controller.api.warranty.list);
   router.post('/api/warranty/create', controller.api.warranty.create);
