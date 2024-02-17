@@ -13,7 +13,7 @@ export async function addCases(params) {
 }
 
 export async function updateCases(params) {
-  return request(`/api/cases/${params.id}`, {
+  return request(`/api/cases/update?id=${params.id}`, {
     method: 'PUT',
     data: params,
   });

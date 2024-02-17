@@ -33,7 +33,7 @@ const UpdateForm = (props) => {
   // }, [props?.updateModalVisible])
 
   console.log('UpdateForm', props)
-  
+
   return (
     <ModalForm
       title='修改案例'
@@ -59,8 +59,8 @@ const UpdateForm = (props) => {
       onFinish={async (value) => {
         await props?.onSubmit({
           ...value,
-          image: value?.image[0]?.response?.data?.url || '',
-          images: value?.images?.map((item) => item?.response?.data?.url) || [],
+          image: value?.image[0]?.url || value?.image[0]?.response?.data?.url || '',
+          images: value?.images?.map((item) => item.url || item?.response?.data?.url) || [],
         })
       }}
     >

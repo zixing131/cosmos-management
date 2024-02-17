@@ -43,9 +43,7 @@ const handleUpdate = async (fields) => {
   const hide = message.loading('Configuring');
   try {
     await updateCases({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
+      ...fields,
     });
     hide();
     message.success('Configuration is successful');

@@ -17,7 +17,7 @@ export async function addInfo(params) {
 }
 
 export async function updateInfo(params) {
-  return request(`/api/info/${params.id}`, {
+  return request(`/api/info/update`, {
     method: 'PUT',
     data: params,
   });

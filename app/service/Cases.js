@@ -88,19 +88,37 @@ class Cases extends Service {
    * @param {Object} data
    * @return {Promise<>}
    */
-  async update(id = this.ctx.params.id, data = this.ctx.request.body) {
+  async update(id = this.ctx.query.id, data = this.ctx.request.body) {
     const model = await this.findById(id);
-    const _data = await this.ctx.validate({
+    // const _data = await this.ctx.validate({
 
-      // id: { type: 'string' },
-      // brand: { type: 'string' },
-      // series: { type: 'string' },
-      // product_name: { type: 'string' },
-      // create_time: { type: 'string' },
-      // update_time: { type: 'string' },
+    //   // id: { type: 'string' },
+    //   // brand: { type: 'string' },
+    //   // series: { type: 'string' },
+    //   // product_name: { type: 'string' },
+    //   // create_time: { type: 'string' },
+    //   // update_time: { type: 'string' },
 
-    }, data);
-    return model.update(_data);
+    // }, data);
+    const { images, ..._data } = data
+    const cases = await this.ctx.model.Cases.create(_data);
+    // 构建图片列表
+    const imagesList = images.map((item) => ({
+      case_id: cases.id,
+      image_url: item,
+      sort_order: item.sort_order,
+    }));
+
+    // 删除原有图片
+    await this.ctx.model.CaseImages.destroy({
+      where: {
+        case_id: cases.id,
+      }
+    });
+
+    // 批量插入图片
+    await this.ctx.model.CaseImages.bulkCreate(imagesList);
+    return { ...(cases?.dataValues || {}), images: imagesList };
   }
 
   /**
