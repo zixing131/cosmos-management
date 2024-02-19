@@ -14,6 +14,21 @@ class WarrantyController extends Controller {
   }
 
   /**
+   * warranty paginate query
+   */
+  async findById() {
+    this.ctx.body = await this.ctx.service.warranty.findById();
+  }
+
+
+  /**
+   * warranty paginate query
+   */
+  async findByPhone() {
+    this.ctx.body = await this.ctx.service.warranty.findByPhone();
+  }
+
+  /**
    * create warranty
    */
   async create() {

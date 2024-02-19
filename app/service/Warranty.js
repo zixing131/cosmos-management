@@ -48,6 +48,38 @@ class Warranty extends Service {
   }
 
   /**
+   * find Cases by id
+   *
+   * @param {string|intger} id
+   * @return {Promise<Promise<*>}
+   */
+  async findById(id = this.ctx.query.id) {
+    const model = await this.ctx.model.Warranty.findOne({
+      where: {
+        id,
+      },
+    });
+    if (!model) this.ctx.throw(400, 'Cases not found.');
+    return model;
+  }
+
+  /**
+   * find Cases by id
+   *
+   * @param {string|intger} id
+   * @return {Promise<Promise<*>}
+   */
+  async findByPhone(phone_number = this.ctx.query.phoneNumber) {
+    const model = await this.ctx.model.Warranty.findOne({
+      where: {
+        phone_number,
+      }
+    });
+    if (!model) this.ctx.throw(400, 'Warranty not found.');
+    return model;
+  }
+
+  /**
    * crate Warranty
    *
    * @param {Object} data

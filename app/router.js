@@ -27,12 +27,15 @@ module.exports = app => {
   router.put('/api/info/pinned', controller.api.info.pinned);
 
   router.get('/api/warranty', controller.api.warranty.list);
+  router.get('/api/warranty/info', controller.api.warranty.findById);
+  router.get('/api/warranty/phone', controller.api.warranty.findByPhone);
   router.post('/api/warranty/create', controller.api.warranty.create);
   router.put('/api/warranty/update', controller.api.warranty.update);
   router.put('/api/warranty/status/:id', controller.api.warranty.updateStatus);
   router.delete('/api/warranty/destroy', controller.api.warranty.destroy);
 
   router.get('/api/cases', controller.api.cases.list);
+  router.get('/api/cases/findById', controller.api.cases.findById);
   router.post('/api/cases', controller.api.cases.create);
   router.put('/api/cases/update', controller.api.cases.update);
   router.delete('/api/cases/destroy', controller.api.cases.destroy);

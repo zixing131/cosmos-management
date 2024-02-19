@@ -13,6 +13,10 @@ class CasesController extends Controller {
     this.ctx.body = await this.ctx.service.cases.paginate();
   }
 
+  async findById() {
+    this.ctx.body = await this.ctx.service.cases.findById();
+  }
+
   /**
    * create cases
    */

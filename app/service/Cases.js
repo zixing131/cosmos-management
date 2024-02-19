@@ -11,7 +11,7 @@ class Cases extends Service {
    * @param {string|intger} id
    * @return {Promise<Promise<*>}
    */
-  async findById(id) {
+  async findById(id = this.ctx.query.id) {
     const model = await this.ctx.model.Cases.findOne({
       where: {
         id,

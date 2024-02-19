@@ -30,17 +30,19 @@ export const INDEX_BRAND = 'INDEX_BRAND';
 export const INDEX_WARRANTY_ENTRANCE = 'INDEX_WARRANTY_ENTRANCE';
 export const INDEX_QUOTATION_ENTRANCE = 'INDEX_QUOTATION_ENTRANCE';
 export const WARRANTY_SEARCH_IMAGE = 'WARRANTY_SEARCH_IMAGE';
+export const ABOUT_US = 'ABOUT_US';
 
 export const INFO_TYPE = {
   INDEX: "INDEX",
   QUERY: "QUERY",
   WARRANTY: "WARRANTY",
+  ABOUT_US: "ABOUT_US",
 }
 
 export const INFO_TYPE_TEXT = {
   [INFO_TYPE.INDEX]: "首页",
   [INFO_TYPE.QUERY]: "搜索页面",
-  // [INFO_TYPE.WARRANTY]: "报价单",
+  [INFO_TYPE.ABOUT_US]: "关于我们",
 }
 
 export const INFO_TYPE_TAB_OPTION = [
@@ -53,8 +55,8 @@ export const INFO_TYPE_TAB_OPTION = [
     key: INFO_TYPE.QUERY,
   },
   {
-    tab: INFO_TYPE_TEXT[INFO_TYPE.WARRANTY],
-    key: INFO_TYPE.WARRANTY,
+    tab: INFO_TYPE_TEXT[INFO_TYPE.ABOUT_US],
+    key: INFO_TYPE.ABOUT_US,
   },
 ]
 
@@ -89,8 +91,8 @@ export const INFO_TYPE_KEYS = {
       label: '品牌介绍',
       maxCount: 1,
       type: 'image',
-      width: 358,
-      height: 200,
+      // width: 358,
+      // height: 200,
     }
   ],
   [INFO_TYPE.QUERY]: [
@@ -99,18 +101,16 @@ export const INFO_TYPE_KEYS = {
       label: '搜索页面图片',
       maxCount: 3,
       type: 'image',
-      width: 370,
-      height: 208,
+      // width: 370,
+      // height: 208,
     }
   ],
-  // [INFO_TYPE.WARRANTY]: [
-  //   {
-  //     optionKey: WARRANTY_SEARCH_IMAGE,
-  //     label: '搜索页面图片',
-  //     maxCount: 1,
-  //     type: 'image',
-  //     width: '',
-  //     height: '',
-  //   }
-  // ],
+  [INFO_TYPE.ABOUT_US]: [
+    {
+      optionKey: ABOUT_US,
+      label: '关于我们图片',
+      maxCount: 20,
+      type: 'image',
+    }
+  ],
 }

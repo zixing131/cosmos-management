@@ -14,6 +14,7 @@ type InfoUploaderProps = {
   height: number;
   files: any[];
   onAdd: (info_key: string, type: string, content: string) => void;
+  onPinned: (id: number) => void;
   onRemove: (id: number) => void;
 }
 
