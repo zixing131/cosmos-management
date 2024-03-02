@@ -26,8 +26,8 @@ module.exports = function(app, sequelize) {
       allowNull: true,
       comment: "昵称"
     },
-    password: {
-      type: DataTypes.STRING(50),
+    is_admin: {
+      type: DataTypes.TINYINT(1),
       allowNull: true,
       comment: "密码"
     },
