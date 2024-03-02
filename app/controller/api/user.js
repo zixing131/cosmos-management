@@ -28,6 +28,13 @@ class UserController extends Controller {
   }
 
   /**
+   * update user by id
+   */
+  async info() {
+    this.ctx.body = await this.ctx.service.user.info();
+  }
+
+  /**
    * destroy user by id
    */
   async destroy() {

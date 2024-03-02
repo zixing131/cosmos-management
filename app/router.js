@@ -10,6 +10,7 @@ module.exports = app => {
   router.get('/api/user/login', controller.api.user.list);
   router.post('/api/wx/login', controller.api.user.login);
   router.post('/api/user/create', controller.api.user.create);
+  router.post('/api/user/info', controller.api.user.info);
   router.put('/api/user/update', controller.api.user.update);
   router.delete('/api/user/destroy', controller.api.user.destroy);
 
