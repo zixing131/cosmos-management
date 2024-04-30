@@ -24,10 +24,10 @@ module.exports = appInfo => {
     // single database
     dialect: 'mysql',// support: mysql, mariadb, postgres, mssql
     database: 'cosmos',
-    host: 'rm-cn-uqm3kp6mj000loyo.rwlb.rds.aliyuncs.com',
+    host: 'rm-bp1868cc2615h436uvo.mysql.rds.aliyuncs.com',
     port: '3306',
     username: 'cosmos',
-    password: 'Benstyle1024',
+    password: '@Benstyle1024',
     timezone: '+08:00',
     hooks: {
       afterDefine(Model) {

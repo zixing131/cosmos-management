@@ -20,7 +20,7 @@ jobs:
     - name: Deploy to server
       uses: appleboy/ssh-action@master
       with:
-        host: 121.40.206.123
+        host: 47.98.226.220
         username: root
         key: ${{ secrets.CENTOS }}
         script: |
